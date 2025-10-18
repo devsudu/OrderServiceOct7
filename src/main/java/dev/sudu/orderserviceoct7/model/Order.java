@@ -1,7 +1,9 @@
 package dev.sudu.orderserviceoct7.model;
 
 import dev.sudu.orderserviceoct7.exception.ProductsNotFoundException;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.util.Assert;
@@ -12,8 +14,9 @@ import java.util.List;
 @Setter
 @Entity
 public class Order extends BaseModel {
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Product> products;
-    // Order   Product
+    // Order   Product ==> M:M
     //   1        M
     //   M        1
     private Double total;
